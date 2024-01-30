@@ -5,25 +5,9 @@ import CreateTable from "./components/CreateTable";
 import Input from "./components/Input";
 import { columnChange, rowChange } from "./features/matrix";
 
-function isValidNumber(value: number) {
-  if (!value || isNaN(value)) {
-    return false;
-  } else {
-    return true;
-  }
-}
 
-function isValidEvenNumber(value: number) {
-  if (!value) {
-    return "لطفا فیلد مورد نطر را پر کنید";
-  } else if (isNaN(value)) {
-    return "لطفا عدد وارد کنید";
-  } else if (value <= 3 && value % 2 === 0) {
-    return " عدد فرد و بزرگتر از 3 وارد کنید";
-  } else {
-    return true;
-  }
-}
+
+
 
 function App() {
   const { row, column, isFormValid } = useSelector(
@@ -32,8 +16,7 @@ function App() {
   const dispatch = useDispatch();
   const [showTable, setShowTable] = useState(false);
 
-  // const {row, column} = useSelector(state => state.app)
-  // dispatch(rowChanged({ value, error }))
+  
 
   const handelSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

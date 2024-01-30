@@ -19,7 +19,7 @@ const matrixSlice = createSlice({
   initialState,
   reducers: {
     rowChange: (state, action) => {
-      const inputValue = +action.payload; // Assuming payload is the value from the input
+      const inputValue = +action.payload; 
       const isValid = validateEvenNumber(inputValue);
       console.log(isValid, "isvaliddrow");
 
@@ -28,13 +28,13 @@ const matrixSlice = createSlice({
         error: isValid,
       };
 
-      // Update isFormValid based on your logic
+    
       state.isFormValid = !state.row.error && !state.column.error;
       state.data = generateInitialData(state.row.value, state.column.value);
     },
 
     columnChange: (state, action) => {
-      const inputValue = +action.payload; // Assuming payload is the value from the input
+      const inputValue = +action.payload; 
       const isValid = validateEvenNumber(inputValue);
       console.log(isValid, "isvaliddcol");
 
@@ -81,10 +81,7 @@ export const {
 
 export default matrixSlice.reducer;
 
-// Utility function to check if a number is even
-// function isValidEvenNumber(value: number): boolean {
-//   return value % 2 !== 0;
-// }
+
 
 function validateEvenNumber(value: number) {
   if (isNaN(value)) {

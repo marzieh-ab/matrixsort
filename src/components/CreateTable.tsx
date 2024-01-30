@@ -24,7 +24,6 @@ const CreateTable = () => {
 
   function isValidEvenNumber(value: number | string): boolean | string {
     const numericValue = Number(value);
-
     if (isNaN(numericValue)) {
       return "لطفاً یک عدد وارد کنید";
     } else if (!Number.isInteger(numericValue)) {
