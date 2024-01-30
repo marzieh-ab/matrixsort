@@ -43,7 +43,7 @@ const matrixSlice = createSlice({
         error: isValid,
       };
 
-      // Update isFormValid based on your logic
+ 
       state.isFormValid = !state.row.error && !state.column.error;
       state.data = generateInitialData(state.row.value, state.column.value);
     },
