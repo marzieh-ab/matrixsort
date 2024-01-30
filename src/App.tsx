@@ -26,14 +26,16 @@ function isValidEvenNumber(value: number) {
 }
 
 function App() {
-  const { row, column, isFormValid } = useSelector((store:any) => store.matrix);
+  const { row, column, isFormValid } = useSelector(
+    (store: any) => store.matrix
+  );
   const dispatch = useDispatch();
   const [showTable, setShowTable] = useState(false);
 
   // const {row, column} = useSelector(state => state.app)
   // dispatch(rowChanged({ value, error }))
 
-  const handelSubmit = (event:React.FormEvent<HTMLFormElement>) => {
+  const handelSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (isFormValid) {
@@ -51,13 +53,13 @@ function App() {
 
   console.log(row, "rowww");
   console.log(column, "column");
-  console.log(  typeof isFormValid, "isfrrmvalid");
+  console.log(isFormValid, "isfrrmvalid");
 
   return (
     <>
       <div className="w-full h-full flex  flex-col items-center justify-center">
         {showTable ? (
-          <CreateTable  />
+          <CreateTable />
         ) : (
           <form
             action=""
@@ -66,17 +68,20 @@ function App() {
           >
             <Input
               onChange={handleRowsChange}
-              isFormValid={isFormValid}
               error={row.error}
               placeholder="لطفا تعداد سطرها را وارد کنید"
+              validation={"number"}
             />
             <Input
               onChange={handleColumnChange}
-              isFormValid={isFormValid}
               error={column.error}
               placeholder="لطفا تعداد ستون ها را وارد کنید"
+              validation={"number"}
             />
-            <button className="p-2  mt-3 rounded-md  border bg-slate-400 text-white"  >
+            <button
+              className="p-2  mt-3 rounded-md  border bg-slate-400 text-white"
+              disabled={!isFormValid}
+            >
               ثبت و ادامه
             </button>
           </form>

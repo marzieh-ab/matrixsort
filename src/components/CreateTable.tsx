@@ -2,7 +2,6 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { sortRows, updateCell } from "../features/matrix";
 
-
 const CreateTable = () => {
   const tableData = useSelector((store: any) => store.matrix.data);
   const dispatch = useDispatch();
@@ -15,30 +14,25 @@ const CreateTable = () => {
   ) => {
     console.log(rowIndex, "indexxx");
     const isValid = isValidEvenNumber(value);
-    
+
     if (isValid === true) {
-    
       dispatch(updateCell({ rowIndex, colIndex, value }));
     } else {
-      
       alert(`${isValid}`);
-      
     }
- 
   };
 
   function isValidEvenNumber(value: number | string): boolean | string {
     const numericValue = Number(value);
-  
+
     if (isNaN(numericValue)) {
       return "لطفاً یک عدد وارد کنید";
     } else if (!Number.isInteger(numericValue)) {
       return "لطفاً یک عدد صحیح وارد کنید";
-    }  else {
+    } else {
       return true;
     }
   }
-
 
   const sortRowsHandler = () => {
     dispatch(sortRows());
@@ -54,8 +48,6 @@ const CreateTable = () => {
                 type="text"
                 className=" border border-y  text-center  p-2 outline-none w-[80px]  text-[8px]"
                 placeholder="عدد وارد کنید"
-             
-            
                 required
                 value={cell}
                 onChange={(e) =>
