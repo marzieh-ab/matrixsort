@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { sortRows, updateCell } from "../features/matrix";
 
+
 const CreateTable = () => {
   const tableData = useSelector((store: any) => store.matrix.data);
   const dispatch = useDispatch();
@@ -32,20 +33,32 @@ const CreateTable = () => {
       return true;
     }
   }
+  const areAllInputsFilled = (tableData:string[][]) => {
+    return tableData.every(row => row.every(cell => cell.trim() !== ''));
+  };
 
   const sortRowsHandler = () => {
-    dispatch(sortRows());
+    const allInputsFilled = areAllInputsFilled(tableData);
+  
+    if (allInputsFilled) {
+      dispatch(sortRows());
+    } else {
+      alert("لطفاً تمامی فیلدها را پر کنید");
+    }
   };
 
   return (
     <div className="flex flex-col mt-[40px]  bg-red items-center justify-center h-[100%]  w-[100%] ">
       {tableData.map((row: string[], rowIndex: number) => (
-        <div key={rowIndex} className="table-row">
+        <div key={rowIndex} className={`table-row ${rowIndex % 2 === 0 ? 'even-row' : 'odd-row'}`}
+        >
           {row.map((cell, colIndex) => (
-            <div key={colIndex} className="table-cell">
+            <div key={colIndex}  className={`table-cell `}
+>
+            
               <input
                 type="text"
-                className=" border border-y  text-center  p-2 outline-none w-[80px]  text-[8px]"
+                className="  border-t border-b  text-center   p-3 outline-none w-[100px]  text-[10px]  bg-transparent "
                 placeholder="عدد وارد کنید"
                 required
                 value={cell}

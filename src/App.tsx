@@ -62,7 +62,10 @@ function App() {
               validation={"number"}
             />
             <button
-              className="p-2  mt-3 rounded-md  border bg-slate-400 text-white"
+        
+        className={`p-2  mt-3 rounded-md  border bg-slate-400 text-white ${
+          !isFormValid ? 'disabled-button' : ''
+        }`}
               disabled={!isFormValid}
             >
               ثبت و ادامه
